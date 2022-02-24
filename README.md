@@ -12,7 +12,11 @@ There are two tables relevant for the analysis, which can be seen on the link ab
 
 Understand whether the product team should be working in the search functionality and, if so, recommending in which way the should be improving the functionality.
 
+# Data
 
+The data can be found in the following link
+
+ https://mode.com/sql-tutorial/understanding-search-functionality/
 
 
 
