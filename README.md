@@ -96,9 +96,22 @@ LIMIT
   
   Not only do we see that this assumption of all searches being autocomplete is incorrect, but we also see that the search click result is not ordered, meaning that users click more on the result 2 than on the result 1 when they run a search, which means that the way the results are ordered in the  search engine could be improved
   
-  We can now look at how many search runs actually get clicked. ( sum of search click results over search run)
- 
- 
-
-
-
+  We can now look at how many search runs actually get clicked. ( sum of search click results over search run). This can be done with the following query: WITH num_search_run AS (
+  SELECT 
+    count(*) AS num_search_runs
+  FROM 
+    tutorial.yammer_events
+  WHERE
+    event_name='search_run'
+  
+)
+SELECT 
+  event_name, (100*count(*)::decimal/ (SELECT * FROM num_search_run)::decimal)  AS percentage_clicked_position
+FROM
+  tutorial.yammer_events
+WHERE 
+  event_name like '%search_click%'
+GROUP BY
+  event_name
+ORDER BY 
+  percentage_clicked_position DESC
